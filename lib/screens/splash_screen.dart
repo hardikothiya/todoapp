@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (_seen) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => HomeScreen()));
+          context, MaterialPageRoute(builder: (_) => const HomeScreen()));
     } else {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => IntroDuctionPage()));
@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Image.asset('assets/images/splash.png',
                 width: 555, height: 555),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           const Text('ToDo',
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2)),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           const Text(
             'Add all your tasks',
             style: TextStyle(color: Colors.white, fontSize: 20),
