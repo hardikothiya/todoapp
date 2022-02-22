@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoapp/screens/introduction_screen.dart';
 import 'package:todoapp/screens/splash_screen.dart';
 
-void main() {
+int? isviewed;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  isviewed = prefs.getInt('onBoard');
   runApp(MyApp());
 }
 

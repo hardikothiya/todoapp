@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todoapp/constants/constants.dart';
+import 'package:todoapp/screens/home_screen.dart';
 import 'package:todoapp/screens/introduction_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,12 +14,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => HomeScreen()));
+    } else {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => IntroDuctionPage()));
+    }
+  }
+
   @override
   void initState() {
+    checkFirstSeen();
     Timer(
-        Duration(seconds: 2),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => IntroDuctionPage())));
+      const Duration(seconds: 2),
+      checkFirstSeen,
+    );
     super.initState();
   }
 

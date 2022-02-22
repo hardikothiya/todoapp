@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_screen.dart';
 
 class IntroDuctionPage extends StatelessWidget {
+  bool isFirstLaunch = false;
+
   @override
   Widget build(BuildContext context) {
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+
     return IntroductionScreen(
       pages: [
         PageViewModel(
@@ -64,7 +69,7 @@ class IntroDuctionPage extends StatelessWidget {
         'Skip',
         style: TextStyle(color: Colors.orangeAccent),
       ),
-      onSkip: () {
+      onSkip: () async {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (_) => const HomeScreen()),
